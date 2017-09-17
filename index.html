@@ -51,7 +51,7 @@ d3.csv("data.csv", function(error, data) {
     return [d["Arte"], d["Dia"]];
   })
   var arteDiaGroup = arteDiaNames.group().reduceSum(function(d) {
-    return d.cantidad;
+    return d.Cantidad;
   });
   var arteAccessor = function(d) {
     return d.key[0];
@@ -59,23 +59,23 @@ d3.csv("data.csv", function(error, data) {
   var diaNameAccessor = function(d) {
     return d.key[1];
   }
-  var cantidadAccessor = function(d) {
+  var CantidadAccessor = function(d) {
     return d.value;
   }
   var filteredData = arteDiaGroup.all();
   console.log('filteredData', filteredData);
   var diaNames = d3.set(filteredData.map(diaNameAccessor)).values()
   var artes = d3.set(filteredData.map(arteAccessor)).values()
-  var maxcantidad = d3.max(filteredData.map(cantidadAccessor));
-  console.log(maxcantidad)
+  var maxCantidad = d3.max(filteredData.map(CantidadAccessor));
+  console.log(maxCantidad)
   x0.domain(artes);
   x1.domain(diaNames).rangeRoundBands([0, x0.rangeBand()]);
-  y.domain([0, maxcantidad]);
+  y.domain([0, maxCantidad]);
   var nestedData = d3.nest()
     .key(arteAccessor)
     .key(diaNameAccessor)
     .rollup(function(d) {
-      return {"value": cantidadAccessor(d[0])};
+      return {"value": CantidadAccessor(d[0])};
     })
     .entries(filteredData)
   svg.append("g")
