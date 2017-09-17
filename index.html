@@ -62,8 +62,8 @@ d3.csv("data.csv", function(error, data) {
   if (error) throw error;
 
   var ndx = crossfilter(data);
-  var stateAgeNames = ndx.dimension(function(d) {
-    return [d["State"], d["Age Range"]];
+  var arteDiaNames = ndx.dimension(function(d) {
+    return [d["Arte"], d["Dia"]];
   })
 
   var stateAgeGroup = stateAgeNames.group().reduceSum(function(d) {
