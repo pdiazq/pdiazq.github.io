@@ -45,6 +45,15 @@ var svg = d3.select("body").append("svg")
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  
+  var dayIndex = function(dayName) {
+    var days = {
+      LUNES: 1, MARTES: 2, MIÉRCOLES: 3, JUEVES: 4,
+      VIERNES :5, SÁBADO: 6, DOMINGO: 7
+    };
+    return days[dayName];
+  }
+  
 d3.csv("data.csv", function(error, data) {
   if (error) throw error;
   var ndx = crossfilter(data);
