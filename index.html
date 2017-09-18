@@ -73,7 +73,7 @@ d3.csv("data.csv", function(error, data) {
     return d.value;
   }
   
-  d3.select('input').on('change', function() {
+  d3.select('diaNames').on('change', function() {
   var sortByAverage = function(a, b) { return b.average - a.average; };
   var sortByday = function(a, b) { return d3.ascending(dayIndex(a.day), dayIndex(b.day)); };
   var sorteddays = data.sort(this.checked ? sortByAverage : sortByday)
